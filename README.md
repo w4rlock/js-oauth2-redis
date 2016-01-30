@@ -23,6 +23,7 @@ curl -H "Authorization: Basic Y2xpZW50OnNlY3JldA=="
 Header params
 
 echo -n client_id:client_secret | base64
+
 Authorization: "Basic " + (base64 auth code)
 
 
