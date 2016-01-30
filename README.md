@@ -20,9 +20,7 @@ curl -H "Authorization: Basic Y2xpZW50OnNlY3JldA=="
 
 ```
 
-- HEADER PARAMS
-
-Authorization: 
+Header params
 
 echo -n client_id:client_secret | base64
 Authorization: "Basic " + (base64 auth code)
@@ -33,6 +31,7 @@ Authorization: "Basic " + (base64 auth code)
 Authorization: 'Bearer' + token
 
 ```bash
+
 curl -H 'Authorization: Bearer 33798ed7b07f59c70788b29f60cfd6e9eb491368' 
      -X GET 
      http://localhost:3000/secret
@@ -42,8 +41,9 @@ curl -H 'Authorization: Bearer 33798ed7b07f59c70788b29f60cfd6e9eb491368'
 ## Refresh token
 
 ```bash
-curl -H "Authorization: Basic Y2xpZW50OnNlY3JldA==" \
-		 -X POST \
-     -d 'refresh_token=383a1002204bab1e7f5c7719dd669f0ac7ddff89&grant_type=refresh_token' \
+curl -H "Authorization: Basic Y2xpZW50OnNlY3JldA==" 
+		 -X POST 
+     -d 'refresh_token=383a1002204bab1e7f5c7719dd669f0ac7ddff89&grant_type=refresh_token' 
 		 http://localhost:3000/oauth/token
+
 ```
