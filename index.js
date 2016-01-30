@@ -18,8 +18,7 @@ app.oauth = oauthserver({
 app.all('/oauth/token', app.oauth.grant());
 
 app.post('/oauth/validate', app.oauth.authorise(), (req, res) => {
-	console.log(JSON.stringify(req.user));
-  res.json({ res: 'OK' });
+  res.json(req.user);
 });
 
 app.get('/public', (req, res) => {
