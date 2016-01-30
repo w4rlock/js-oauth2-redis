@@ -30,4 +30,6 @@ app.get('/public', (req, res) => {
 // Error handling
 app.use(app.oauth.errorHandler());
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log('[*] Server Listing on port %d', '3000');
+});
