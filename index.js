@@ -17,9 +17,9 @@ app.oauth = oauthserver({
 // Handle token grant requests
 app.all('/oauth/token', app.oauth.grant());
 
-app.get('/secret', app.oauth.authorise(), (req, res) => {
-  // Will require a valid access_token
-  res.send('Secret area');
+app.post('/oauth/validate', app.oauth.authorise(), (req, res) => {
+	console.log(JSON.stringify(req.user));
+  res.json({ res: 'OK' });
 });
 
 app.get('/public', (req, res) => {
