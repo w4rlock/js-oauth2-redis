@@ -1,12 +1,15 @@
 #! /usr/bin/env node
+'use strict'
 
-var db = require('redis').createClient();
+let db = require('redis').createClient();
+let md5 = require('md5');
+
 
 db.multi()
   .hmset('users:username', {
     id: 'username',
     username: 'username',
-    password: 'password'
+    password: md5('password')
   })
   .hmset('clients:client', {
     clientId: 'client',

@@ -1,8 +1,10 @@
 var model = module.exports,
+	md5 = require('md5'),
   util = require('util'),
   redis = require('redis');
 
 var db = redis.createClient();
+
 
 var keys = {
   token: 'tokens:%s',
@@ -81,7 +83,7 @@ model.getUser = function (username, password, callback) {
   db.hgetall(util.format(keys.user, username), function (err, user) {
     if (err) return callback(err);
 
-    if (!user || password !== user.password) return callback();
+    if (!user || md5(password) !== user.password) return callback();
 
     callback(null, {
       id: username
