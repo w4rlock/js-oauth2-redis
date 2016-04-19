@@ -1,23 +1,17 @@
-var express = require('express'),
-  bodyParser = require('body-parser'),
-  oauthserver = require('oauth2-server')
+var express = require('express')
+  , bodyParser = require('body-parser')
+	, app = express();
 
-var app = express();
+require('./lib/oauth2plus')(app);
 
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(bodyParser.json());
 
-app.oauth = oauthserver({
-  model: require('./model'),
-  grants: ['password', 'refresh_token'],
-  debug: true
-});
 
 // Handle token grant requests
 app.all('/oauth/token', app.oauth.grant());
-
-app.post('/app/register', app.oauth.register());
+app.post('/app/register', app.oauth.register);
 
 app.post('/oauth/validate', app.oauth.authorise(), function(req, res) {
   res.json(req.user);

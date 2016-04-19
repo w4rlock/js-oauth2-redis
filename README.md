@@ -16,6 +16,8 @@ npm start
 			http://localhost:3000/app/register
 
 
+```
+
 ## Get token
 
 ```bash

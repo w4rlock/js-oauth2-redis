@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <hello></hello>
+    <header-tabs></header-tabs>
+
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello.vue'
+import HeaderTabs from './components/HeaderTabs.vue'
+
 
 export default {
   components: {
-    Hello
+		HeaderTabs
+
   }
 }
 </script>
