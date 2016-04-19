@@ -17,7 +17,9 @@ app.oauth = oauthserver({
 // Handle token grant requests
 app.all('/oauth/token', app.oauth.grant());
 
-app.post('/oauth/validate', app.oauth.authorise(), (req, res) => {
+app.post('/app/register', app.oauth.register());
+
+app.post('/oauth/validate', app.oauth.authorise(), function(req, res) {
   res.json(req.user);
 });
 

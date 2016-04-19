@@ -8,6 +8,14 @@ npm start
 ```
 
 
+## Register App Name
+```bash
+ curl -H "Content-Type: application/json" 
+			-X POST  
+			-d '{"name":"app1", "description":"twitter_app", "platform":"mobile"}'     
+			http://localhost:3000/app/register
+
+
 ## Get token
 
 ```bash

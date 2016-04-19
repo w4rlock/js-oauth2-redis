@@ -90,3 +90,45 @@ model.getUser = function (username, password, callback) {
     });
   });
 };
+
+
+model.saveClient = function(name, descr, platform, redirect, callback){
+	var now = new Date().valueOf();
+	var clientId = md5(name+now);
+	var secretId = md5(name+clientId+now);
+
+	var keyGrant = util.format(keys.grantTypes, clientId);
+	var keyClient = util.format(keys.client, clientId);
+
+	console.log(secretId);
+	console.log(clientId);
+
+	db.multi()
+		.hmset(keyClient, {
+				clientId: clientId
+			, clientSecret: secretId
+			, name: name
+			, descr: descr
+			, platform: platform
+			, redirect: redirect 
+
+		})
+		.sadd(keyGrant, [
+				'password'
+			, 'refresh_token'
+		])
+		.exec(function (errs) {
+			console.log('done');
+
+			if (errs){
+				callback(errs);
+			}
+			else{
+				callback(null, {
+					clientId: clientId,
+					secretId: secretId
+				});
+			}
+
+		});
+}
