@@ -5,12 +5,12 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Title</span>
+      <span class="mdl-layout-title">OAuth2 Server </span>
     </div>
     <!-- Tabs -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
-      <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">App </a>
+      <a href="#fixed-tab-2" class="mdl-layout__tab"> Users</a>
       <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
     </div>
   </header>
@@ -21,6 +21,7 @@
     <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
       <div class="page-content">
 				<register-app> </register-app>
+				<!--<list-app> </list-app>-->
 			</div>
     </section>
 
@@ -39,18 +40,23 @@
 
   </main>
 </div>
+
+
 </template>
 
 <script>
 
 import RegisterApp from './RegisterApp.vue'
 import RegisterUser from './RegisterUser.vue'
+import ListApp from './ListApp.vue'
 
 export default {
   components: {
 		RegisterUser,
-		RegisterApp
+		RegisterApp,
+		ListApp
   },
+
   data () {
     return {
       // Note: modifying `msg` below will not cause changes to occur with
@@ -59,6 +65,7 @@ export default {
       test: 'Hello World!'
     }
   }
+
 }
 </script>
 
