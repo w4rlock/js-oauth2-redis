@@ -2,7 +2,7 @@
 <div class="mdl-card mdl-shadow--2dp md-full-card">
 	<loader :show="loading"> </loader>
 	<div class="mdl-card__actions mdl-card--border mdl-card-bottom">
-		<div class="mdl-cell mdl-cell--4-col">
+		<div class="mdl-cell mdl-cell--12-col">
 			<button @click="clickNewApp" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" > New app </button>
 			<button @click="clickRefresh" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" > Refresh </button>
 			<button @click="clickDelApp" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" > Remove </button>

@@ -17,12 +17,12 @@
 					<label class="mdl-textfield__label" for="sample3">Description</label>
 				</div>
 
-				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+				<label id="chk2_wrap" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
 					<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" v-model="frmModel.platform" value="web">
 					<span class="mdl-checkbox__label">Web App</span>
 				</label>
 
-				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+				<label id="chk1_wrap" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
 					<input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" v-model="frmModel.platform" value="mobile">
 					<span class="mdl-checkbox__label">Mobile App</span>
 				</label>
@@ -57,24 +57,28 @@ export default {
 
 
   data () {
-
     return {
 			loading: false,
-			frmModel: { 
-				name:null,
-			  platform:[],
-				oauthCode: null,
-			  description:null,
-			  redirectURL:null 
-			}
-
+			frmModel: this.getModel()
 		}
   },
 
 
 	/*Form Events*/
 	methods: {
+		getModel(){
+			return {
+				name:null,
+			  platform:[],
+				oauthCode: null,
+			  description:null,
+			  redirectURL:null 
+			}
+		},
+
+
 		clickCancel(){
+			this.cleanForm();
 			this.$dispatch('clickcancel');
 		},
 
@@ -94,6 +98,16 @@ export default {
 					}
 				});
 
+		},
+
+		cleanForm(){
+			this.frmModel = this.getModel();
+
+			document.querySelector('#chk1_wrap').className = 
+			document.querySelector('#chk1_wrap').className.replace(/is-checked/g, '');
+
+			document.querySelector('#chk2_wrap').className = 
+			document.querySelector('#chk2_wrap').className.replace(/is-checked/g,'');
 		}
 	}
 }
