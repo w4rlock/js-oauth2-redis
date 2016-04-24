@@ -67,10 +67,10 @@ export default {
 						ls.set('auth', res.data);
 						this.loading = false;
 						this.$dispatch('usr_loggedin');
-					}, 1500);
+					}, 1300);
 
 			},
-			(err) => setTimeout(this.showFailLogin, 1500));
+			(err) => setTimeout(this.showFailLogin, 1300));
 		},
 
 

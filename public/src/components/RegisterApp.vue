@@ -2,8 +2,8 @@
 <div class="mdl-card mdl-shadow--2dp md-full-card">
 	<loader :show="loading"> </loader>
 	<div class="mdl-card__title">
-				<h2 class="mdl-card__title-text">Register App</h2>
-			</div>
+		<h2 class="mdl-card__title-text">Register App</h2>
+	</div>
 	<div class="mdl-cell mdl-cell--12-col">
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 			<form action="#">
@@ -35,10 +35,11 @@
 		<span>{{ frmModel.oauthCode }}</span>
 	</div>
 	<div class="mdl-card__actions mdl-card--border mdl-card-bottom">
-		<div class="mdl-cell mdl-cell--1-col">
+		<div class="mdl-cell mdl-cell--5-col">
 			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
-			@click="registerApp"
+			@click="clickRegister"
 			> Register </button>
+			<button @click="clickCancel" class="mdl-button mdl-js-button dl-js-ripple-effect"> Cancel </button>
 		</div>
 	</div>
 </div>
@@ -73,11 +74,14 @@ export default {
 
 	/*Form Events*/
 	methods: {
+		clickCancel(){
+			this.$dispatch('clickcancel');
+		},
 
-		registerApp(){
+		clickRegister(){
 			this.loading = true;	
 			
-			http.post('/app/register', this.frmModel,
+			http.post('/app', this.frmModel,
 				(res) => {
 					setTimeout(() => this.loading = false, 1500);
 					this.frmModel.oauthCode = res.data.authcode;

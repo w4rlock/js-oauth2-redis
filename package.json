@@ -5,7 +5,10 @@
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "compression": "^1.6.1",
     "express": "^4.13.3",
+    "express-rate-limit": "^2.1.2",
+    "helmet": "^1.3.0",
     "ioredis": "^1.15.1",
     "md5": "^2.0.0",
     "oauth2-server": "^2.4.1",
@@ -13,7 +16,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js",
+    "start": "forever index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

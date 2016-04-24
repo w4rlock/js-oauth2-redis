@@ -20,8 +20,17 @@
   <main class="mdl-layout__content">
     <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
       <div class="page-content">
-				<register-app> </register-app>
-				<!--<list-app> </list-app>-->
+
+				<register-app 
+					v-show="showNewAppForm"
+					v-on:clickcancel="clickcancel">
+			  </register-app>
+
+				<list-app 
+					v-show="!showNewAppForm" 
+					v-on:clicknewapp="clicknewapp"> 
+				</list-app>
+
 			</div>
     </section>
 
@@ -62,9 +71,20 @@ export default {
       // Note: modifying `msg` below will not cause changes to occur with
       // hot-reload. As reloaded components preserve their initial state,
       // modifying these values will have no effect.
-      test: 'Hello World!'
+			showNewAppForm: false
     }
-  }
+  },
+
+	methods: {
+		clicknewapp(ev){
+			this.showNewAppForm = true;
+		},
+		clickcancel(ev){
+			console.log('Banned: ' );
+			this.showNewAppForm = false;
+		}
+	}
+	
 
 }
 </script>

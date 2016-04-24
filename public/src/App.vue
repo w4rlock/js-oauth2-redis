@@ -49,7 +49,8 @@ export default {
 	events:{
 		usr_loggedin() {
 			this.isAuthenticated = true;
-		}
+		},
+
 	}
 
 }

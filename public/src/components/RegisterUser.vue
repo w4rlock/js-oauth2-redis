@@ -20,13 +20,13 @@
 					<label class="mdl-textfield__label" for="sample2">Email</label>
 				</div>
 
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="password" id="sample3" v-model="frmModel.password">
+				<div id="wrap_pass" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="password" id="sample3" v-model="password">
 					<label class="mdl-textfield__label" for="sample3">Password</label>
 				</div>
 
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="password" id="sample3" v-model="frmModel.password">
+				<div id="wrap_repass" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="password" id="sample3" v-model="repassword">
 					<label class="mdl-textfield__label" for="sample3">Confirm Password</label>
 				</div>
 
@@ -38,9 +38,10 @@
 		<span>{{ frmModel.oauthCode }}</span>
 	</div>
 	<div class="mdl-card__actions mdl-card--border mdl-card-bottom">
-		<div class="mdl-cell mdl-cell--1-col">
-			<button @click="signUp" class="mdl-button mdl-js-button mdl-button--raised 
+		<div class="mdl-cell mdl-cell--5-col">
+			<button @click="clickRegister" class="mdl-button mdl-js-button mdl-button--raised 
 			mdl-button--colored mdl-js-ripple-effect"> Register </button>
+			<button @click="clickCancel" class="mdl-button mdl-js-button dl-js-ripple-effect"> Cancel </button>
 		</div>
 	</div>
 </div>
@@ -60,34 +61,75 @@ export default {
   data () {
     return {
 		 	loading: false,
+			password: null,
+			repassword: null,
+
 			frmModel: { 
 				name:null,
-			  email:null,
-				password: null
+			  email:null
 			}
 
 		}
   },
 
 
+
+	ready(){
+		this.$watch('password', this.checkPassword);
+		this.$watch('repassword', this.checkPassword);
+	},
+
+
+
 	/*Form Events*/
 	methods: {
-		signUp(){
-			this.loading = true;
-			
-			http.post('/app/signup', this.frmModel,
-				(res) => {
-					setTimeout(() => this.loading = false, 1500);
 
+		checkPassword(val){
+			if(this.password != this.repassword){
+				this.showFailPass();
+			}
+			else{
+				this.clearFail();
+			}
+		},
+
+
+
+		clickCancel(){
+			this.$dispatch('click-cancel');
+		},
+
+
+
+		clickRegister(){
+			this.loading = true;
+			this.frmModel.password = this.password;
+
+			http.post('/usr/signup', this.frmModel, (res) => {
+					setTimeout(() => this.loading = false, 1500);
 					//this.frmModel.oauthCode = res.data.authcode;
 					alert(res.data.authcode);
-				}, 
-
-				(err) => {
+				}, (err) => {
 					setTimeout(() => this.loading = false, 1500);
-
 				});
 
+		},
+
+		
+		
+		showFailPass(){
+			document.querySelector('#wrap_pass').className+= ' is-invalid';
+			document.querySelector('#wrap_repass').className+= ' is-invalid';
+		},
+
+
+
+		clearFail(){
+			document.querySelector('#wrap_pass').className = 
+			document.querySelector('#wrap_pass').className.replace(/is-invalid/g, '');
+
+			document.querySelector('#wrap_repass').className = 
+			document.querySelector('#wrap_repass').className.replace(/is-invalid/g,'');
 		}
 	}
 
