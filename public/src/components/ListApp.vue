@@ -25,8 +25,7 @@
           tr(v-for='app in gridData')
             td
               label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='lapp_chk-{{$index}}')
-                <input class="mdl-checkbox__input" id="#lapp_chk-{{$index}}" type='checkbox' v-model='checks' value='{{ $index }}'>
-                </input>
+                input.mdl-checkbox__input(id='lapp_chk-{{$index}}',type='checkbox',v-model='checks',value='{{ $index }}')
             td.mdl-data-table__cell--non-numeric {{ app.name }}
             td.mdl-data-table__cell--non-numeric {{ app.descr }}
             td.mdl-data-table__cell--non-numeric {{ app.authorization }}
