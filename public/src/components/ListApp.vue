@@ -1,38 +1,36 @@
-<template>
-<div class="mdl-card mdl-shadow--2dp md-full-card">
-	<loader :show="loading"> </loader>
-	<div class="mdl-card__actions mdl-card--border mdl-card-bottom">
-		<div class="mdl-cell mdl-cell--12-col">
-			<button @click="clickNewApp" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" > New app </button>
-			<button @click="clickRefresh" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" > Refresh </button>
-			<button @click="clickDelApp" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" > Remove </button>
-		</div>
-	</div>
-	<div class="mdl-cell mdl-cell--12-col">
-		<table class="mdl-data-table mdl-js-data-table ml-table-striped  mdl-data-table--selectable mdl-shadow--1dp">
-			<thead>
-				<tr>
-					<th class="mdl-data-table__cell--non-numeric">Name</th>
-					<th class="mdl-data-table__cell--non-numeric">Description</th>
-					<th class="mdl-data-table__cell--non-numeric">Authorization</th>
-					<th class="mdl-data-table__cell--non-numeric">Creation</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="app in gridData"> 
-					<td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="lapp_chk-{{$index}}">
-							<input id="lapp_chk-{{$index}}"type="checkbox" class="mdl-checkbox__input" v-model="checks" value="{{ $index }}"/>
-						</label>
-					</td>
-					<td class="mdl-data-table__cell--non-numeric">{{ app.name }}</td>
-					<td class="mdl-data-table__cell--non-numeric">{{ app.descr }}</td>
-					<td class="mdl-data-table__cell--non-numeric">{{ app.authorization }}</td>
-					<td class="mdl-data-table__cell--non-numeric">{{ app.fcreation }}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
+<template lang='jade'>
+  .mdl-card.mdl-shadow--2dp.md-full-card
+    loader(:show='loading')
+    mdl-card__actions.mdl-card--border.mdl-card-bottom
+      mdl-cell.mdl-cell--12-col
+        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored.mdl-js-ripple-effect(@click='clickNewApp')
+          i.material-icons add
+
+        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored.mdl-js-ripple-effect(@click='clickRefresh')
+          i.material-icons refresh
+
+        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored.mdl-js-ripple-effect(@click='clickDelApp')
+          i.material-icons delete
+
+    mdl-cell.mdl-cell--12-col
+      table.mdl-data-table.mdl-js-data-table.ml-table-striped.mdl-shadow--1dp
+        thead
+          tr
+            th.mdl-data-table__cell--non-numeric 
+            th.mdl-data-table__cell--non-numeric Name
+            th.mdl-data-table__cell--non-numeric Description
+            th.mdl-data-table__cell--non-numeric Authorization
+            th.mdl-data-table__cell--non-numeric Creation
+        tbody
+          tr(v-for='app in gridData')
+            td
+              label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='lapp_chk-{{$index}}')
+                <input class="mdl-checkbox__input" id="#lapp_chk-{{$index}}" type='checkbox' v-model='checks' value='{{ $index }}'>
+                </input>
+            td.mdl-data-table__cell--non-numeric {{ app.name }}
+            td.mdl-data-table__cell--non-numeric {{ app.descr }}
+            td.mdl-data-table__cell--non-numeric {{ app.authorization }}
+            td.mdl-data-table__cell--non-numeric {{ app.fcreation }}
 </template>
 
 
@@ -136,19 +134,21 @@ export default {
 }
 </script>
 
-<style>
-table{
-margin-top: 20px;
-margin-bottom: 30px;
-width: 100%;
-}
+<style lang='stylus'>
+table
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 100%;
 
-.mdl-data-table{
-border:0 !important;
-}
-.mdl-data-table td{
-border-top: 1px solid rgba(141, 141, 141, 0.12) !important;
-border-bottom: 1px solid rgba(141, 141, 141, 0.12) !important;
-}
+.mdl-data-table
+  border:0 !important;
+
+.mdl-data-table td
+  border-top: 1px solid rgba(141, 141, 141, 0.12) !important;
+  border-bottom: 1px solid rgba(141, 141, 141, 0.12) !important;
+
+.mdl-button
+  margin 3px
+  min-width 50px
 
 </style>
